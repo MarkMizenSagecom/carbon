@@ -15,28 +15,20 @@ import Box from '../box';
 />
 
 # Accordion
-Group, hide and show content.
 
 ## Overview
 Accordions are a good progressive disclosure technique - initially showing only top-level information, but allowing the user quick access to more on request. But, they can confuse users sometimes, so use them sparingly.
 
-## Guidance, hints and tips
+## Designer Notes
 
-Don’t put accordions within accordions.
-
-Don’t hide important controls within accordions - for example, primary actions should always be outside them.
-
-Accordions expand and collapse vertically. If there are lots, or content is extensive, be careful that the user doesn’t become confused, lose their place, or have problems with discoverability. Use them sparingly for these reasons.
-
-Accordions should remain open or closed until a user interacts with them. Consider whether multiple, or only one accordion section can be open at a time.
-
-An arrow icon pointing down indicates that the accordion is closed.
-
-An arrow icon pointing up indicates that the accordion is open.
-
-The icon can animate when a transition is made.
-
-The user can click the icon directly, the text label, or the text label’s background to action the accordion.
+- Don’t put accordions within accordions.
+- Don’t hide important controls within accordions - for example, primary actions should always be outside them.
+- Accordions expand and collapse vertically. If there are lots, or content is extensive, be careful that the user doesn’t become confused, lose their place, or have problems with discoverability. Use them sparingly for these reasons.
+- Accordions should remain open or closed until a user interacts with them. Consider whether multiple, or only one accordion section can be open at a time.
+- An arrow icon pointing down indicates that the accordion is closed.
+- An arrow icon pointing up indicates that the accordion is open.
+- The icon can animate when a transition is made.
+- The user can click the icon directly, the text label, or the text label’s background to action the accordion.
 
 ## Quick Start
 
@@ -67,8 +59,12 @@ const MyComponent = () => (
   </Accordion>
 );
 ```
+To group accordions import `AccordionGroup`. 
 
-## Visuals
+```jsx
+import { Accordion, AccordionGroup } from "carbon-react/lib/components/accordion"
+```
+## Examples
 
 ### Default
 Default version of accordion has white background and no side borders.
@@ -167,6 +163,7 @@ The default width of 100% can be overriden.
 </Preview>
 
 ### With different padding and margin
+Showing the different paddings and margins
 
 <Preview>
   <Story name="with different padding and margin">
@@ -197,6 +194,7 @@ The default width of 100% can be overriden.
 </Preview>
 
 ### With different padding and margin in Accordion title
+Showing the different paddings and margins within the accordion title
 
 <Preview>
   <Story name="with different padding and margin in Accordion title">
@@ -227,6 +225,7 @@ The default width of 100% can be overriden.
 </Preview>
 
 ### With Box component and different paddings
+The box component can be used inside the accordion with different paddings
 
 <Preview>
   <Story name="with Box component and different paddings" parameters={{ chromatic: { disable: true }}}>
@@ -331,13 +330,9 @@ This is not currently designed to be used within a form using validation.
 </Preview>
 
 ### Grouped
-Accordions borders collapse when positioned next to each other making it easy to group them.
+To group accordions import `AccordionGroup`. Accordions borders collapse when positioned next to each other making it easy to group them.
 To achieve proper keyboard accessibility as described in `W3` sources it is required to wrap neighbouring accordions in
 `AccordionGroup`.
-
-```jsx
-import { Accordion, AccordionGroup } from "carbon-react/lib/components/accordion"
-```
 
 <Preview>
   <Story id="design-system-accordion-test--grouped" name="grouped">
@@ -477,10 +472,8 @@ Accordion adjust it's height properly when it's content is being dynamically cha
   </Story>
 </Preview>
 
-
 ### With overriden styles
 Accordion styles can be easily overriden by providing `styleOverride` prop with proper structure as defined in propTypes.
-
 <Preview>
   <Story name="styles overriden" parameters={{ chromatic: { disable: true }}}>
     <Accordion
@@ -507,6 +500,8 @@ Accordion styles can be easily overriden by providing `styleOverride` prop with 
 </Preview>
 
 ### With a definition list
+Accordion with a definiton list
+
 <Preview>
   <Story name="with a definition list" parameters={{ chromatic: { disable: true }}}>
     <Accordion title='Heading' expanded={true}>
@@ -541,5 +536,12 @@ Accordion styles can be easily overriden by providing `styleOverride` prop with 
   </Story>
 </Preview>
 
+## Props
+
+### Accordion
+
 <Props of={Accordion} />
-<StyledSystemProps of={Accordion} spacing />
+
+### Style System 
+
+<StyledSystemProps noHeader spacing />

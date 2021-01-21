@@ -9,12 +9,20 @@ import { PropsTable } from '@storybook/components';
 
 # Box
 
+## Overview
+
+Basic component that gives access to a number of styling options. Should be used to achieve more precise layouts when required. Gives access to Spacing, Color, Layout and FlexBox attributes.
+
+## Quick Start
+
+Import the box component to start using
+
 ```javascript
   import Box from 'carbon-react/lib/components/box';
 ```
+## Examples 
 
-## Overview
-Basic component that gives access to a number of styling options. Should be used to achieve more precise layouts when required. Gives access to Spacing, Color, Layout and FlexBox attributes.
+### Spacing 
 <Preview>
   <Story name='spacing' parameters={{ info: { disable: true }}} >
     <Box m={3} p={3} bg='secondary'>
@@ -23,7 +31,7 @@ Basic component that gives access to a number of styling options. Should be used
   </Story>
 </Preview>
 
-## Color
+### Color
 <Preview>
   <Story name='color' parameters={{ info: { disable: true }}} >
     <Box m={3} p={3} bg='secondary'>
@@ -34,7 +42,7 @@ Basic component that gives access to a number of styling options. Should be used
   </Story>
 </Preview>
 
-## Flex
+### Flex
 <Preview>
   <Story name='flex' parameters={{ info: { disable: true }}} >
     <div>
@@ -52,7 +60,7 @@ Basic component that gives access to a number of styling options. Should be used
   </Story>
 </Preview>
 
-## Layout
+### Layout
 <Preview>
   <Story name='layout' parameters={{ info: { disable: true }}} >
     <Box display='block' size='150px' overflow='hidden'>
@@ -63,8 +71,9 @@ Basic component that gives access to a number of styling options. Should be used
   </Story>
 </Preview>
 
-## Scroll
-Use the `scrollVariant` prop to indicate which theme scrollbar you would like to display. Use `light` or `dark` values to display as below. This will still require the use of the `overflow` prop and only displays in Chrome or Safari
+### Scroll
+Use the `scrollVariant` prop to indicate which theme scrollbar you would like to display. Use `light` or `dark` values to display as below. This will still require the use of the `overflow` prop and only displays in Chrome or Safari.
+If no `scrollVariant` prop is set then the scroll bar will resort to the browser default.
 <Preview>
   <Story name='scroll' parameters={{ info: { disable: true }, chromatic: { disable: true }}} >
     <div>
@@ -84,18 +93,25 @@ Use the `scrollVariant` prop to indicate which theme scrollbar you would like to
   </Story>
 </Preview>
 
+## Props 
+
+### Style System
+
 <StyledSystemProps
   spacing
   color
   flexBox
   layout
+  noHeader
 />
+
+### Scroll Varient 
+
 <PropsTable rows={[
   {
     name: 'scrollVariant',
     type: { summary: 'dark | light' },
     description: 'String to denote which style variant to use for scrollbars',
-    required: false,
-    defaultValue: ''
+    required: false
   }
 ]} />
