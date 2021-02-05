@@ -9,6 +9,7 @@ import Button from "../button/button.component";
 import { baseTheme, mintTheme } from "../../style/themes";
 import StyledIcon from "../icon/icon.style";
 import Icon from "../icon";
+import Loader from "../loader";
 
 describe("Confirm", () => {
   let wrapper, onCancel, onConfirm;
@@ -98,8 +99,27 @@ describe("Confirm", () => {
       });
     });
 
+    it("should not render confirm button", () => {
+      wrapper = mount(<Confirm onConfirm={() => {}} isLoading open />);
+
+      expect(wrapper.find(Loader).exists()).toBe(true);
+    });
+
+    it("should render confirm button without left margin", () => {
+      wrapper = mount(
+        <Confirm cancelButtonType="tertiary" onConfirm={() => {}} open />
+      );
+
+      assertStyleMatch(
+        {
+          marginLeft: "0",
+        },
+        wrapper.find('[data-element="confirm"]')
+      );
+    });
+
     describe("when custom labels are not defined", () => {
-      wrapper = mount(<Confirm />);
+      wrapper = mount(<Confirm open onConfirm={() => {}} />);
 
       it("returns default values", () => {
         expect(
