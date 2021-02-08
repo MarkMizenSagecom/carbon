@@ -7,7 +7,6 @@ import { StyledConfirmButtons, StyledConfirmHeading } from "./confirm.style";
 import Button from "../button/button.component";
 import Icon from "../icon";
 import Loader from "../loader";
-import OptionsHelper from "../../utils/helpers/options-helper";
 
 class Confirm extends Dialog {
   // ** Returns main classes for the component combined with dialog main classes. */
@@ -24,7 +23,7 @@ class Confirm extends Dialog {
         data-element="cancel"
         buttonType={this.props.cancelButtonType}
         destructive={this.props.destructive}
-        disabled={this.props.disabledCancel}
+        disabled={this.props.disableCancel}
       >
         {this.props.cancelLabel || I18n.t("confirm.no", { defaultValue: "No" })}
       </Button>
@@ -38,10 +37,10 @@ class Confirm extends Dialog {
         data-element="confirm"
         buttonType="primary"
         destructive={this.props.destructive}
-        disabled={this.props.isLoading || this.props.disabledConfirm}
-        ml={this.props.cancelButtonType === "tertiary" ? 0 : 2}
+        disabled={this.props.isLoadingConfirm || this.props.disableConfirm}
+        ml={this.props.cancelButtonType === "tertiary" ? "3px" : 2}
       >
-        {this.props.isLoading ? (
+        {this.props.isLoadingConfirm ? (
           <Loader isInsideButton isActive />
         ) : (
           this.props.confirmLabel ||
@@ -104,14 +103,14 @@ Confirm.propTypes = {
   destructive: PropTypes.bool,
   /** Defines an Icon type within the button (see Icon for options) */
   iconType: PropTypes.oneOf(["error", "warning"]),
-  /** Makes cancel button disable */
-  disabledCancel: PropTypes.bool,
-  /** Makes confirm button disable */
-  disabledConfirm: PropTypes.bool,
+  /** Makes cancel button disabled */
+  disableCancel: PropTypes.bool,
+  /** Makes confirm button disabled */
+  disableConfirm: PropTypes.bool,
   /** Allows to setup buttonType into cancel button */
-  cancelButtonType: PropTypes.oneOf(OptionsHelper.buttonTypes),
+  cancelButtonType: PropTypes.oneOf(["primary", "secondary", "tertiary"]),
   /** Adds isLoading state into confirm button */
-  isLoading: PropTypes.bool,
+  isLoadingConfirm: PropTypes.bool,
 };
 
 export default Confirm;

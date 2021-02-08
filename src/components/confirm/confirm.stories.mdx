@@ -129,10 +129,10 @@ const MyComponent = ({ isOpen, handleClose, handleConfirm }) => (
   </Story>
 </Preview>
 
-## `disabledConfirm`
+## `disableConfirm`
 
 <Preview>
-  <Story name="confirm - disabledConfirm" parameters={{ chromatic: { disable: true }}}>
+  <Story name="confirm - disableConfirm" parameters={{ chromatic: { disable: true }}}>
     {() => {
       const [isOpen, setIsOpen] = useState(false);
       return (
@@ -144,7 +144,7 @@ const MyComponent = ({ isOpen, handleClose, handleConfirm }) => (
             title="Are you sure?"
             subtitle="Subtitle"
             destructive
-            disabledConfirm
+            disableConfirm
             open={ isOpen }
             onConfirm={ () => setIsOpen(false) }
             onCancel={ () => setIsOpen(false) }
@@ -157,10 +157,10 @@ const MyComponent = ({ isOpen, handleClose, handleConfirm }) => (
   </Story>
 </Preview>
 
-## `disabledCancel`
+## `disableCancel`
 
 <Preview>
-  <Story name="confirm - disabledCancel" parameters={{ chromatic: { disable: true }}}>
+  <Story name="confirm - disableCancel" parameters={{ chromatic: { disable: true }}}>
     {() => {
       const [isOpen, setIsOpen] = useState(false);
       return (
@@ -171,7 +171,7 @@ const MyComponent = ({ isOpen, handleClose, handleConfirm }) => (
           <Confirm
             title="Are you sure?"
             subtitle="Subtitle"
-            disabledCancel
+            disableCancel
             open={ isOpen }
             onConfirm={ () => setIsOpen(false) }
             onCancel={ () => setIsOpen(false) }
@@ -212,10 +212,10 @@ Allows to set variant which is supported in `<Button />` and it will be applied 
   </Story>
 </Preview>
 
-## `isLoading`
+## `isLoadingConfirm`
 
 <Preview>
-  <Story name="confirm - isLoading" parameters={{ chromatic: { disable: true }}}>
+  <Story name="confirm - isLoadingConfirm" parameters={{ chromatic: { disable: true }}}>
     {() => {
       const [isOpen, setIsOpen] = useState(false);
       return (
@@ -226,7 +226,7 @@ Allows to set variant which is supported in `<Button />` and it will be applied 
           <Confirm
             title="Are you sure?"
             subtitle="Subtitle"
-            isLoading
+            isLoadingConfirm
             open={ isOpen }
             onConfirm={ () => setIsOpen(false) }
             onCancel={ () => setIsOpen(false) }

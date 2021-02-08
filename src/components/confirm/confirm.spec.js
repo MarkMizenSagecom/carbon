@@ -10,6 +10,7 @@ import { baseTheme, mintTheme } from "../../style/themes";
 import StyledIcon from "../icon/icon.style";
 import Icon from "../icon";
 import Loader from "../loader";
+import IconButton from "../icon-button";
 
 describe("Confirm", () => {
   let wrapper, onCancel, onConfirm;
@@ -100,7 +101,7 @@ describe("Confirm", () => {
     });
 
     it("should not render confirm button", () => {
-      wrapper = mount(<Confirm onConfirm={() => {}} isLoading open />);
+      wrapper = mount(<Confirm onConfirm={() => {}} isLoadingConfirm open />);
 
       expect(wrapper.find(Loader).exists()).toBe(true);
     });
@@ -112,10 +113,24 @@ describe("Confirm", () => {
 
       assertStyleMatch(
         {
-          marginLeft: "0",
+          marginLeft: "3px",
         },
         wrapper.find('[data-element="confirm"]')
       );
+    });
+
+    it("should not render IconButton if `disableCancel` is provided", () => {
+      wrapper = mount(
+        <Confirm
+          shlowCloseIcon
+          onClose={() => {}}
+          onConfirm={() => {}}
+          open
+          disableCancel
+        />
+      );
+
+      expect(wrapper.find(IconButton).exists()).toBe(false);
     });
 
     describe("when custom labels are not defined", () => {

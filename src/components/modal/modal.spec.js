@@ -202,6 +202,15 @@ describe("Modal", () => {
           expect(onCancelFn).not.toHaveBeenCalled();
         });
       });
+
+      describe("with disableCancel prop set to true", () => {
+        it("then the onCancel method should not have been called", () => {
+          wrapper.setProps({ disableCancel: true });
+          onCancelFn.mockReset();
+          domNode.dispatchEvent(escapeKeyEvent);
+          expect(onCancelFn).not.toHaveBeenCalled();
+        });
+      });
     });
   });
 });

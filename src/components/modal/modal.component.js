@@ -76,13 +76,14 @@ class Modal extends React.Component {
   }
 
   closeModal = (ev) => {
-    const { open, onCancel, disableEscKey } = this.props;
+    const { open, onCancel, disableEscKey, disableCancel } = this.props;
     const isTopmost = ModalManager.isTopmost(this.modalRef.current);
 
     if (
       open &&
       onCancel &&
       !disableEscKey &&
+      !disableCancel &&
       Events.isEscKey(ev) &&
       isTopmost
     ) {
@@ -178,6 +179,8 @@ Modal.propTypes = {
   enableBackgroundUI: PropTypes.bool,
   /** Determines if the Esc Key closes the modal */
   disableEscKey: PropTypes.bool,
+  /** Blocks Modal from being closed */
+  disableCancel: PropTypes.bool,
   /** The ARIA role to be applied to the modal */
   ariaRole: PropTypes.string, // eslint-disable-line react/no-unused-prop-types
 };
