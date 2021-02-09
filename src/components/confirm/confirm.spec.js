@@ -106,7 +106,7 @@ describe("Confirm", () => {
       expect(wrapper.find(Loader).exists()).toBe(true);
     });
 
-    it("should render confirm button without left margin", () => {
+    it("should render confirm with left margin 3px", () => {
       wrapper = mount(
         <Confirm cancelButtonType="tertiary" onConfirm={() => {}} open />
       );
