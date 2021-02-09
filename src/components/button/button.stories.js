@@ -214,6 +214,29 @@ export const noWrapButtons = () => {
   );
 };
 
+export const iconOnlyButtons = () => {
+  const binIcon = "bin";
+  return (
+    <>
+      {OptionsHelper.buttonTypes.map((buttonType) => {
+        return OptionsHelper.sizesRestricted.map((size) => {
+          return (
+            <div style={{ width: 100 }}>
+              <Button
+                buttonType={buttonType}
+                size={size}
+                iconType={binIcon}
+                iconPosition="center"
+                aria-label={binIcon}
+              />
+            </div>
+          );
+        });
+      })}
+    </>
+  );
+};
+
 export const fullWidthButtons = () => {
   return (
     <>

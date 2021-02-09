@@ -414,6 +414,72 @@ Passing in the `href` prop will render an anchor with `role="button"` and the Bu
   </Story>
 </Preview>
 
+### Icon Only Button
+
+Buttons can be rendered with just an icon. To achieve the correct styling for the icon placement, please pass `"center"` to the `iconPosition` prop. This ensures that the icon is centered within the button.
+
+<Preview>
+  <Story name="icon only button">
+    <>
+      <Button 
+        buttonType="primary" 
+        size="small" 
+        iconType="bin" 
+        iconPosition="center" 
+        aria-label="Delete"
+      />
+      <Button 
+        destructive
+        ml={2} 
+        iconType="bin"
+        iconPosition="center" 
+        aria-label="Delete"
+      />
+      <Button 
+        buttonType="dashed" 
+        size="large" 
+        ml={2} 
+        iconType="bin" 
+        iconPosition="center" 
+        aria-label="Delete"
+      />
+    </>
+  </Story>
+</Preview>
+
+Icon only buttons can also display a tooltip message when the icon is hovered over. This can be acheived by passing a string to the `tooltipMessage` prop.
+
+<Preview>
+  <Story name="icon only button with tooltip">
+    <>
+      <Button 
+        buttonType="primary" 
+        size="small" iconType="bin" 
+        iconPosition="center" 
+        tooltipMessage="This is a tooltip"
+        aria-label="Delete"
+      />
+      <Button 
+        destructive
+        ml={2} 
+        iconType="bin"
+        iconPosition="center" 
+        tooltipMessage="This is a tooltip"
+        aria-label="Delete"
+      />
+      <Button 
+        buttonType="dashed"       
+        size="large" 
+        ml={2} 
+        iconType="bin" 
+        iconPosition="center" 
+        tooltipMessage="This is a tooltip"
+        aria-label="Delete"
+      />
+    </>
+  </Story>
+</Preview>
+
 ## Shared Props
 
 Options shared between all of the above types of buttons. When setting padding we recommend using either the `p`, `py`

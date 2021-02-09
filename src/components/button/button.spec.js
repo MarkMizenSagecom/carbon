@@ -50,6 +50,20 @@ describe("Button", () => {
     );
   });
 
+  describe("when iconPosition is center", () => {
+    it("matches the style for a center positioned icon", () => {
+      const wrapper = mount(<Button iconType="bin" iconPosition="center" />);
+
+      assertStyleMatch(
+        {
+          marginBottom: "1px",
+        },
+        wrapper,
+        { modifier: `${StyledIcon}` }
+      );
+    });
+  });
+
   describe.each(Object.entries(sizesPadding))(
     "spacing for %s button",
     (size, px) => {
@@ -81,7 +95,7 @@ describe("Button", () => {
       expect(wrapper).toMatchSnapshot();
     });
 
-    describe.each(["before", "after"])(
+    describe.each(["before", "center", "after"])(
       'when position is set to "%s"',
       (position) => {
         describe.each(OptionsHelper.buttonTypes)(
@@ -515,6 +529,17 @@ describe("Button", () => {
       ).dive();
 
       rootTagTest(wrapper, "button", "bar", "baz");
+    });
+  });
+
+  describe("aria-label", () => {
+    it("should be present when button has only an icon", () => {
+      const wrapper = shallow(
+        <Button aria-label="Bin" iconType="bin" iconPosition="center" />
+      ).dive();
+
+      const ariaLink = wrapper.find('[aria-label="Bin"]');
+      expect(ariaLink.exists()).toBe(true);
     });
   });
 

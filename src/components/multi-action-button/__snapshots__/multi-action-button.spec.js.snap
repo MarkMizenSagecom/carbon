@@ -80,6 +80,7 @@ exports[`MultiActionButton when rendered should match the snapshot 1`] = `
 .c3 .c4 {
   margin-left: 8px;
   margin-right: 0px;
+  margin-bottom: 0px;
   height: 16px;
 }
 

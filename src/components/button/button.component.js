@@ -16,6 +16,7 @@ function renderChildren({
   children,
   disabled,
   buttonType,
+  tooltipMessage,
 }) {
   const iconColorMap = {
     primary: "on-dark-background",
@@ -32,6 +33,7 @@ function renderChildren({
           disabled={disabled}
           bgTheme="none"
           iconColor={iconColorMap[buttonType]}
+          tooltipMessage={tooltipMessage}
         />
       )}
       <span>
@@ -42,12 +44,22 @@ function renderChildren({
           </StyledButtonSubtext>
         )}
       </span>
+      {iconType && iconPosition === "center" && (
+        <Icon
+          type={iconType}
+          disabled={disabled}
+          bgTheme="none"
+          iconColor={iconColorMap[buttonType]}
+          tooltipMessage={tooltipMessage}
+        />
+      )}
       {iconType && iconPosition === "after" && (
         <Icon
           type={iconType}
           disabled={disabled}
           bgTheme="none"
           iconColor={iconColorMap[buttonType]}
+          tooltipMessage={tooltipMessage}
         />
       )}
     </>
@@ -56,6 +68,7 @@ function renderChildren({
 
 const renderStyledButton = (buttonProps) => {
   const {
+    "aria-label": ariaLabel,
     disabled,
     buttonType,
     iconType,
@@ -65,6 +78,7 @@ const renderStyledButton = (buttonProps) => {
     px,
     size,
     noWrap,
+    tooltipMessage,
     ...rest
   } = buttonProps;
 
@@ -95,6 +109,7 @@ const renderStyledButton = (buttonProps) => {
 
   return (
     <StyledButton
+      aria-label={ariaLabel}
       as={!disabled && href ? "a" : "button"}
       onKeyDown={href && handleLinkKeyDown}
       draggable={false}
@@ -138,18 +153,34 @@ const Button = (props) => {
 Button.propTypes = {
   /** Styled system spacing props */
   ...propTypes.space,
+  /** Prop to specify the aria-label text. Only to be used in Button when only an icon is rendered. This is required to comply with WCAG 4.1.2 - Buttons must have discernible text  */
+  "aria-label": PropTypes.string,
   /** Color variants for new business themes: "primary" | "secondary" | "tertiary" | "darkBackground" */
   buttonType: PropTypes.oneOf(OptionsHelper.buttonTypes),
   /** The text the button displays */
-  children: PropTypes.node.isRequired,
+  children: (props, propName, ...rest) => {
+    if (!props.iconType && !props.children) {
+      return new Error(
+        "Either prop `iconType` must be defined or this node must have children."
+      );
+    }
+    return PropTypes.node(props, propName, ...rest);
+  },
   /** Apply disabled state to the button */
   disabled: PropTypes.bool,
   /** Apply destructive style to the button */
   destructive: PropTypes.bool,
-  /** Defines an Icon position within the button: "before" | "after" */
+  /** Defines an Icon position within the button: "before" | "center" | "after" */
   iconPosition: PropTypes.oneOf([...OptionsHelper.buttonIconPositions]),
   /** Defines an Icon type within the button (see Icon for options) */
-  iconType: PropTypes.oneOf([...OptionsHelper.icons, ""]),
+  iconType: (props, propName, ...rest) => {
+    if (!props.iconType && !props.children) {
+      return new Error(
+        "Either prop `iconType` must be defined or this node must have children."
+      );
+    }
+    return PropTypes.node(props, propName, ...rest);
+  },
   /** Assigns a size to the button: "small" | "medium" | "large" */
   size: PropTypes.oneOf(OptionsHelper.sizesRestricted),
   /** Second text child, renders under main text, only when size is "large" */
@@ -164,6 +195,8 @@ Button.propTypes = {
   fullWidth: PropTypes.bool,
   /** If provided, the text inside a button will not wrap */
   noWrap: PropTypes.bool,
+  /** Provides a tooltip message when the icon is hovered. */
+  tooltipMessage: PropTypes.string,
 };
 
 Button.defaultProps = {
