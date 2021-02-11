@@ -65,32 +65,34 @@ class Modal extends React.Component {
     this.listening = true;
     this.updateDataState();
     ModalManager.addModal(this.modalRef.current);
-    Browser.getWindow().addEventListener("keyup", this.closeModal);
+    Browser.getWindow().addEventListener("keyup", this.closeModal.bind(this));
   }
 
   handleClose() {
     this.listening = false;
     ModalManager.removeModal(this.modalRef.current);
     this.updateDataState();
-    Browser.getWindow().removeEventListener("keyup", this.closeModal);
+    Browser.getWindow().removeEventListener(
+      "keyup",
+      this.closeModal.bind(this)
+    );
   }
 
-  closeModal = (ev) => {
-    const { open, onCancel, disableEscKey, disableCancel } = this.props;
+  closeModal(ev) {
+    const { open, onCancel, disableEscKey } = this.props;
     const isTopmost = ModalManager.isTopmost(this.modalRef.current);
 
     if (
       open &&
       onCancel &&
       !disableEscKey &&
-      !disableCancel &&
       Events.isEscKey(ev) &&
       isTopmost
     ) {
       ev.stopImmediatePropagation();
       onCancel(ev);
     }
-  };
+  }
 
   get backgroundHTML() {
     if (!this.props.enableBackgroundUI) {
@@ -179,8 +181,6 @@ Modal.propTypes = {
   enableBackgroundUI: PropTypes.bool,
   /** Determines if the Esc Key closes the modal */
   disableEscKey: PropTypes.bool,
-  /** Blocks Modal from being closed */
-  disableCancel: PropTypes.bool,
   /** The ARIA role to be applied to the modal */
   ariaRole: PropTypes.string, // eslint-disable-line react/no-unused-prop-types
 };

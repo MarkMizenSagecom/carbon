@@ -1,6 +1,7 @@
 import * as React from 'react';
 
 export interface ConfirmProps {
+  // ** A custom event handler when a confirmation takes place */
   onConfirm: () => void;
   // ** Customise the confirm button label */
   confirmLabel?: string;
@@ -15,7 +16,7 @@ export interface ConfirmProps {
   /** Makes confirm button disabled */
   disableConfirm?: boolean;
   /** Allows to setup buttonType into cancel button */
-  cancelButtonType?: 'primary' | 'secondary' | 'tertiary' | 'dashed' | 'destructive' | 'darkBackground';
+  cancelButtonType?: 'primary' | 'secondary' | 'tertiary';
   /** Adds isLoading state into confirm button */
   isLoadingConfirm?: boolean;
 }

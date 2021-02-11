@@ -100,23 +100,61 @@ describe("Confirm", () => {
       });
     });
 
-    it("should not render confirm button", () => {
-      wrapper = mount(<Confirm onConfirm={() => {}} isLoadingConfirm open />);
+    describe("when `disableCancel` prop is provided", () => {
+      let domNode;
+      let escapeKeyEvent;
+      const onCancelFn = jest.fn();
 
-      expect(wrapper.find(Loader).exists()).toBe(true);
+      beforeEach(() => {
+        escapeKeyEvent = new KeyboardEvent("keyup", {
+          key: "Escape",
+          which: 27,
+          bubbles: true,
+        });
+        wrapper = mount(
+          <Confirm
+            disableCancel
+            onConfirm={() => {}}
+            open
+            onCancel={onCancelFn}
+          />
+        );
+        domNode = wrapper.getDOMNode();
+        document.body.appendChild(domNode);
+      });
+
+      afterEach(() => {
+        document.body.removeChild(domNode);
+      });
+
+      it("should not close the modal if ESC key is pressed", () => {
+        onCancelFn.mockReset();
+        domNode.dispatchEvent(escapeKeyEvent);
+        expect(onCancelFn).not.toHaveBeenCalled();
+      });
     });
 
-    it("should render confirm with left margin 3px", () => {
-      wrapper = mount(
-        <Confirm cancelButtonType="tertiary" onConfirm={() => {}} open />
-      );
+    describe("if `isLoadingConfirm` button is provided", () => {
+      it("should not render confirm button", () => {
+        wrapper = mount(<Confirm onConfirm={() => {}} isLoadingConfirm open />);
 
-      assertStyleMatch(
-        {
-          marginLeft: "3px",
-        },
-        wrapper.find('[data-element="confirm"]')
-      );
+        expect(wrapper.find(Loader).exists()).toBe(true);
+      });
+    });
+
+    describe("if `cancelButtonType` is tertiary", () => {
+      it("should render confirm button with left margin 3px", () => {
+        wrapper = mount(
+          <Confirm cancelButtonType="tertiary" onConfirm={() => {}} open />
+        );
+
+        assertStyleMatch(
+          {
+            marginLeft: "3px",
+          },
+          wrapper.find('[data-element="confirm"]')
+        );
+      });
     });
 
     it("should not render IconButton if `disableCancel` is provided", () => {

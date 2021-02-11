@@ -14,6 +14,18 @@ class Confirm extends Dialog {
     return classNames(super.mainClasses);
   }
 
+  get closeIcon() {
+    if (this.props.disableCancel) return null;
+
+    return super.closeIcon;
+  }
+
+  closeModal(ev) {
+    if (!this.props.disableCancel) {
+      super.closeModal(ev);
+    }
+  }
+
   renderCancelButton() {
     if (!this.props.onCancel) return null;
 

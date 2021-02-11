@@ -170,8 +170,8 @@ class Dialog extends Modal {
   }
 
   get closeIcon() {
-    const { showCloseIcon, onCancel, disableCancel } = this.props;
-    if (!showCloseIcon || !onCancel || disableCancel) return null;
+    const { showCloseIcon, onCancel } = this.props;
+    if (!showCloseIcon || !onCancel) return null;
 
     return (
       <IconButton
