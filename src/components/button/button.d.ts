@@ -35,7 +35,8 @@ export interface ButtonProps extends SpacingProps {
   forwardRef?: () => void;
   onClick?: (event: React.MouseEvent<HTMLButtonElement | HTMLLinkElement>) => void;
   noWrap?: boolean;
-  tooltipMessage?: string;
+  iconTooltipMessage?: string;
+  iconTooltipPosition?: string;
 }
 
 declare const Button: React.ComponentType<

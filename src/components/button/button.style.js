@@ -42,7 +42,7 @@ const StyledButton = styled.button`
 
   ${({ iconPosition, theme }) => css`
     ${StyledIcon} {
-      margin-left: ${iconPosition !== "after" ? "0px" : `${theme.spacing}px`};
+      margin-left: ${iconPosition === "after" ? `${theme.spacing}px` : "0px"};
       margin-right: ${iconPosition === "before" ? `${theme.spacing}px` : "0px"};
       margin-bottom: ${iconPosition === "center" ? "1px" : "0px"};
       height: ${additionalIconStyle};

@@ -95,7 +95,7 @@ describe("Button", () => {
       expect(wrapper).toMatchSnapshot();
     });
 
-    describe.each(["before", "center", "after"])(
+    describe.each(["before", "after"])(
       'when position is set to "%s"',
       (position) => {
         describe.each(OptionsHelper.buttonTypes)(
@@ -119,6 +119,29 @@ describe("Button", () => {
             });
           }
         );
+      }
+    );
+  });
+
+  describe("When icon position is set to center", () => {
+    describe.each(OptionsHelper.buttonTypes)(
+      "and the button type is %s",
+      (buttonType) => {
+        let wrapper;
+        beforeEach(() => {
+          wrapper = render({
+            iconType: "filter",
+            iconPosition: "center",
+            buttonType,
+          }).dive();
+        });
+
+        it("contains an Icon", () => {
+          const assertion =
+            wrapper.find(Icon).exists() &&
+            wrapper.find(Icon).props().type === "filter";
+          expect(assertion).toEqual(true);
+        });
       }
     );
   });

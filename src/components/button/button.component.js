@@ -16,7 +16,8 @@ function renderChildren({
   children,
   disabled,
   buttonType,
-  tooltipMessage,
+  iconTooltipMessage,
+  iconTooltipPosition,
 }) {
   const iconColorMap = {
     primary: "on-dark-background",
@@ -33,7 +34,6 @@ function renderChildren({
           disabled={disabled}
           bgTheme="none"
           iconColor={iconColorMap[buttonType]}
-          tooltipMessage={tooltipMessage}
         />
       )}
       <span>
@@ -44,13 +44,14 @@ function renderChildren({
           </StyledButtonSubtext>
         )}
       </span>
-      {iconType && iconPosition === "center" && (
+      {!children && iconType && iconPosition === "center" && (
         <Icon
           type={iconType}
           disabled={disabled}
           bgTheme="none"
           iconColor={iconColorMap[buttonType]}
-          tooltipMessage={tooltipMessage}
+          tooltipMessage={iconTooltipMessage}
+          tooltipPosition={iconTooltipPosition}
         />
       )}
       {iconType && iconPosition === "after" && (
@@ -59,7 +60,6 @@ function renderChildren({
           disabled={disabled}
           bgTheme="none"
           iconColor={iconColorMap[buttonType]}
-          tooltipMessage={tooltipMessage}
         />
       )}
     </>
@@ -109,7 +109,9 @@ const renderStyledButton = (buttonProps) => {
 
   return (
     <StyledButton
-      aria-label={ariaLabel}
+      aria-label={
+        !rest.children && iconType ? ariaLabel || iconType : undefined
+      }
       as={!disabled && href ? "a" : "button"}
       onKeyDown={href && handleLinkKeyDown}
       draggable={false}
@@ -196,7 +198,9 @@ Button.propTypes = {
   /** If provided, the text inside a button will not wrap */
   noWrap: PropTypes.bool,
   /** Provides a tooltip message when the icon is hovered. */
-  tooltipMessage: PropTypes.string,
+  iconTooltipMessage: PropTypes.string,
+  /** Provides positioning when the tooltip is displayed. */
+  iconTooltipPosition: PropTypes.string,
 };
 
 Button.defaultProps = {
