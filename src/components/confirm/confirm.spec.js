@@ -125,10 +125,10 @@ describe("Confirm", () => {
 
       afterEach(() => {
         document.body.removeChild(domNode);
+        onCancelFn.mockReset();
       });
 
       it("should not close the modal if ESC key is pressed", () => {
-        onCancelFn.mockReset();
         domNode.dispatchEvent(escapeKeyEvent);
         expect(onCancelFn).not.toHaveBeenCalled();
       });
