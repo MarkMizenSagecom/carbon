@@ -20,7 +20,7 @@ const OptionsHelper = {
 
   buttonColors: ["blue", "grey", "magenta", "magenta-dull", "red", "white"],
 
-  buttonIconPositions: ["before", "center", "after"],
+  buttonIconPositions: ["before", "after"],
 
   colors: [
     "default",

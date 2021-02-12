@@ -1,7 +1,6 @@
 import React, { useRef } from "react";
 import PropTypes from "prop-types";
 import propTypes from "@styled-system/prop-types";
-
 import Icon from "../icon";
 import StyledButton, { StyledButtonSubtext } from "./button.style";
 import tagComponent from "../../utils/helpers/tags";
@@ -26,15 +25,17 @@ function renderChildren({
     darkBackground: "business-color",
   };
 
+  const iconProps = {
+    type: iconType,
+    disabled,
+    bgTheme: "none",
+    iconColor: iconColorMap[buttonType],
+  };
+
   return (
     <>
-      {iconType && iconPosition === "before" && (
-        <Icon
-          type={iconType}
-          disabled={disabled}
-          bgTheme="none"
-          iconColor={iconColorMap[buttonType]}
-        />
+      {iconType && iconPosition === "before" && children && (
+        <Icon {...iconProps} />
       )}
       <span>
         <span data-element="main-text">{children}</span>
@@ -44,23 +45,15 @@ function renderChildren({
           </StyledButtonSubtext>
         )}
       </span>
-      {!children && iconType && iconPosition === "center" && (
+      {iconType && !children && (
         <Icon
-          type={iconType}
-          disabled={disabled}
-          bgTheme="none"
-          iconColor={iconColorMap[buttonType]}
+          {...iconProps}
           tooltipMessage={iconTooltipMessage}
           tooltipPosition={iconTooltipPosition}
         />
       )}
-      {iconType && iconPosition === "after" && (
-        <Icon
-          type={iconType}
-          disabled={disabled}
-          bgTheme="none"
-          iconColor={iconColorMap[buttonType]}
-        />
+      {iconType && iconPosition === "after" && children && (
+        <Icon {...iconProps} />
       )}
     </>
   );
@@ -95,7 +88,6 @@ const renderStyledButton = (buttonProps) => {
   if (href) {
     rest.href = href;
   }
-
   switch (size) {
     case "small":
       paddingX = 2;
@@ -123,6 +115,7 @@ const renderStyledButton = (buttonProps) => {
       size={size}
       px={px || paddingX}
       noWrap={noWrap}
+      iconOnly={!rest.children && iconType}
       {...tagComponent("button", buttonProps)}
       {...rest}
       ref={ref}
@@ -134,11 +127,8 @@ const renderStyledButton = (buttonProps) => {
 
 const Button = (props) => {
   const { size, subtext } = props;
-
   const linkRef = useRef(null);
-
   const { as, buttonType, forwardRef, ...rest } = props;
-
   const propsWithoutAs = {
     ...rest,
     buttonType: buttonType || as,
@@ -148,7 +138,6 @@ const Button = (props) => {
   if (subtext.length > 0 && size !== "large") {
     throw new Error("subtext prop has no effect unless the button is large");
   }
-
   return renderStyledButton(propsWithoutAs);
 };
 
@@ -172,7 +161,7 @@ Button.propTypes = {
   disabled: PropTypes.bool,
   /** Apply destructive style to the button */
   destructive: PropTypes.bool,
-  /** Defines an Icon position within the button: "before" | "center" | "after" */
+  /** Defines an Icon position related to the children: "before" | "after" */
   iconPosition: PropTypes.oneOf([...OptionsHelper.buttonIconPositions]),
   /** Defines an Icon type within the button (see Icon for options) */
   iconType: (props, propName, ...rest) => {
@@ -200,7 +189,7 @@ Button.propTypes = {
   /** Provides a tooltip message when the icon is hovered. */
   iconTooltipMessage: PropTypes.string,
   /** Provides positioning when the tooltip is displayed. */
-  iconTooltipPosition: PropTypes.string,
+  iconTooltipPosition: PropTypes.oneOf(["top", "bottom", "left", "right"]),
 };
 
 Button.defaultProps = {
@@ -219,7 +208,7 @@ const ButtonWithForwardRef = React.forwardRef((props, ref) => (
 
 ButtonWithForwardRef.displayName = "Button";
 ButtonWithForwardRef.defaultProps = Button.defaultProps;
-
 Button.displayName = "Button";
+
 export { ButtonWithForwardRef };
 export default Button;

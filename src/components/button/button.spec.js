@@ -50,8 +50,8 @@ describe("Button", () => {
     );
   });
 
-  describe("when iconPosition is center", () => {
-    it("matches the style for a center positioned icon", () => {
+  describe("when iconType specified with no children", () => {
+    it("icon matches the style for an icon only button", () => {
       const wrapper = mount(<Button iconType="bin" iconPosition="center" />);
 
       assertStyleMatch(
@@ -123,7 +123,7 @@ describe("Button", () => {
     );
   });
 
-  describe("When icon position is set to center", () => {
+  describe("When icon type is pecified and button has no children", () => {
     describe.each(OptionsHelper.buttonTypes)(
       "and the button type is %s",
       (buttonType) => {
@@ -131,7 +131,6 @@ describe("Button", () => {
         beforeEach(() => {
           wrapper = render({
             iconType: "filter",
-            iconPosition: "center",
             buttonType,
           }).dive();
         });
@@ -558,7 +557,7 @@ describe("Button", () => {
   describe("aria-label", () => {
     it("should be present when button has only an icon", () => {
       const wrapper = shallow(
-        <Button aria-label="Bin" iconType="bin" iconPosition="center" />
+        <Button aria-label="Bin" iconType="bin" />
       ).dive();
 
       const ariaLink = wrapper.find('[aria-label="Bin"]');

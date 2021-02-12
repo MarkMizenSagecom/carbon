@@ -416,7 +416,7 @@ Passing in the `href` prop will render an anchor with `role="button"` and the Bu
 
 ### Icon Only Button
 
-Buttons can be rendered with just an icon. To achieve the correct styling for the icon placement, please pass `"center"` to the `iconPosition` prop. This ensures that the icon is centered within the button.
+Buttons can be rendered with just an icon.
 
 <Preview>
   <Story name="icon only button">
@@ -425,14 +425,12 @@ Buttons can be rendered with just an icon. To achieve the correct styling for th
         buttonType="primary" 
         size="small" 
         iconType="bin" 
-        iconPosition="center" 
         aria-label="Delete"
       />
       <Button 
         destructive
         ml={2} 
         iconType="bin"
-        iconPosition="center" 
         aria-label="Delete"
       />
       <Button 
@@ -440,22 +438,20 @@ Buttons can be rendered with just an icon. To achieve the correct styling for th
         size="large" 
         ml={2} 
         iconType="bin" 
-        iconPosition="center" 
         aria-label="Delete"
       />
     </>
   </Story>
 </Preview>
 
-Icon only buttons can also display a tooltip message when the icon is hovered over. This can be acheived by passing a string to the `tooltipMessage` prop.
+Icon only buttons can also display a tooltip message when the icon is hovered over. This can be acheived by passing a string to the `iconTooltipMessage` prop.
 
 <Preview>
-  <Story name="icon only button with tooltip">
+  <Story name="icon only button with tooltip" parameters={{ chromatic: { disable: true }}}>
     <>
       <Button 
         buttonType="primary" 
         size="small" iconType="bin" 
-        iconPosition="center" 
         iconTooltipMessage="This is a tooltip"
         aria-label="Delete"
       />
@@ -463,7 +459,6 @@ Icon only buttons can also display a tooltip message when the icon is hovered ov
         destructive
         ml={2} 
         iconType="bin"
-        iconPosition="center" 
         iconTooltipMessage="This is a tooltip"
         aria-label="Delete"
       />
@@ -472,7 +467,6 @@ Icon only buttons can also display a tooltip message when the icon is hovered ov
         size="large" 
         ml={2} 
         iconType="bin" 
-        iconPosition="center" 
         iconTooltipMessage="This is a tooltip"
         aria-label="Delete"
       />

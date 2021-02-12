@@ -18,11 +18,7 @@ describe("OptionsHelper", () => {
     ]);
   });
   it("buttonIconPositions", () => {
-    expect(OptionsHelper.buttonIconPositions).toEqual([
-      "before",
-      "center",
-      "after",
-    ]);
+    expect(OptionsHelper.buttonIconPositions).toEqual(["before", "after"]);
   });
   it("colors", () => {
     expect(OptionsHelper.colors).toEqual([
