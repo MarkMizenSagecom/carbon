@@ -52,7 +52,7 @@ describe("Button", () => {
 
   describe("when iconType specified with no children", () => {
     it("icon matches the style for an icon only button", () => {
-      const wrapper = mount(<Button iconType="bin" iconPosition="center" />);
+      const wrapper = mount(<Button iconType="bin" />);
 
       assertStyleMatch(
         {
@@ -123,7 +123,7 @@ describe("Button", () => {
     );
   });
 
-  describe("When icon type is pecified and button has no children", () => {
+  describe("When icon type is specified and button has no children", () => {
     describe.each(OptionsHelper.buttonTypes)(
       "and the button type is %s",
       (buttonType) => {
