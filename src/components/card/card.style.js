@@ -21,6 +21,7 @@ const StyledCard = styled.div`
     vertical-align: top;
     width: ${cardWidth};
     outline: none;
+    overflow: auto;
 
     ${interactive &&
     css`

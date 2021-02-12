@@ -209,6 +209,7 @@ describe("Card", () => {
             boxShadow:
               "0 3px 3px 0 rgba(0,20,29,0.2),0 2px 4px 0 rgba(0,20,29,0.15)",
             outline: "none",
+            overflow: "auto",
           },
           wrapper.toJSON(),
           selector
