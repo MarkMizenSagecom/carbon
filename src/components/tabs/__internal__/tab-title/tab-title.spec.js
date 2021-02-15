@@ -70,6 +70,47 @@ describe("TabTitle", () => {
     });
   });
 
+  describe("when `href` provided", () => {
+    it("should trigger open in new tab if pressed with Enter or Space", () => {
+      wrapper = render({ href: "randomUrl" });
+      global.open = jest.fn();
+
+      wrapper.props().onKeyDown({ which: 32, stopPropagation: () => {} });
+      expect(global.open).toHaveBeenCalledWith("randomUrl", "_blank");
+      jest.clearAllMocks();
+    });
+
+    it("should trigger open in new tab if clicked", () => {
+      wrapper = mount(
+        <TabTitle
+          href="randomUrl"
+          title="Tab Title 1"
+          dataTabId="uniqueid1"
+          onClick={() => {}}
+        >
+          <StyledTitleContent />
+        </TabTitle>
+      );
+      global.open = jest.fn();
+      wrapper
+        .find(StyledTitleContent)
+        .props()
+        .onClick({ stopPropagation: () => {} });
+      expect(global.open).toHaveBeenCalledWith("randomUrl", "_blank");
+      jest.clearAllMocks();
+    });
+  });
+
+  describe("when `href` is not provided", () => {
+    it("should not trigger open in new tab if pressed with Enter or Space", () => {
+      wrapper = render({ onKeyDown: () => {} });
+      global.open = jest.fn();
+
+      wrapper.props().onKeyDown({ which: 32, stopPropagation: () => {} });
+      expect(global.open).not.toHaveBeenCalled();
+    });
+  });
+
   describe('when position is "top', () => {
     describe("with borders", () => {
       it("applies proper styling", () => {

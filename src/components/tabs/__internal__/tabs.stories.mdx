@@ -292,6 +292,53 @@ The tabs widget also allows you to select a tab on page load. By default this is
   </Story>
 </Preview>
 
+### With Link as a Tab
+To set a different tab on page load pass a `tabId` to the `selectedTabId` prop as shown in the example below.
+
+<Preview>
+  <Story name="with link as a tab">
+    {() => {
+      return (
+        <div style={{ padding: '4px' }}>
+          <Tabs selectedTabId='tab-2' align='left' position='top'>
+            <Tab
+              errorMessage='error'
+              warningMessage='warning'
+              infoMessage='info'
+              tabId='tab-1'
+              title='Tab 1'
+              key='tab-1'
+            >
+              Content for tab 1
+            </Tab>
+            <Tab
+              errorMessage='error'
+              warningMessage='warning'
+              infoMessage='info'
+              tabId='tab-2'
+              title='Tab 2'
+              key='tab-2'
+              href="#"
+            >
+              Content for tab 2
+            </Tab>
+            <Tab
+              errorMessage='error'
+              warningMessage='warning'
+              infoMessage='info'
+              tabId='tab-3'
+              title='Tab 3'
+              key='tab-3'
+            >
+             Content for tab 3
+            </Tab>
+          </Tabs>
+        </div>
+      );
+    }}
+  </Story>
+</Preview>
+
 ### With specified tab visible
 To set a different tab on page load pass a `tabId` to the `selectedTabId` prop as shown in the example below.
 

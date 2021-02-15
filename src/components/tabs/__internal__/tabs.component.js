@@ -205,6 +205,7 @@ const Tabs = ({
         errorMessage,
         warningMessage,
         infoMessage,
+        href,
         customLayout,
       } = child.props;
       const refId = `${tabId}-tab`;
@@ -252,6 +253,7 @@ const Tabs = ({
           ref={(node) => addRef(node)}
           tabIndex={isTabSelected(tabId) ? "0" : "-1"}
           title={title}
+          href={href}
           isTabSelected={isTabSelected(tabId)}
           error={tabHasError}
           warning={tabHasWarning}

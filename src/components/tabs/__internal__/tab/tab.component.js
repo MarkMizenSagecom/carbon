@@ -16,6 +16,7 @@ const Tab = ({
   updateErrors,
   updateWarnings,
   updateInfos,
+  href,
   ...rest
 }) => {
   const [tabErrors, setTabErrors] = useState({});
@@ -77,7 +78,7 @@ const Tab = ({
         position={position}
         {...tagComponent("tab", rest)}
       >
-        {children}
+        {!href && children}
       </StyledTab>
     </TabContext.Provider>
   );
@@ -115,6 +116,8 @@ Tab.propTypes = {
   siblings: PropTypes.arrayOf(PropTypes.node),
   /** Position title before or after siblings */
   titlePosition: PropTypes.oneOf(["before", "after"]),
+  /** Allows Tab to be a link */
+  href: PropTypes.string,
 };
 
 export { TabContext };

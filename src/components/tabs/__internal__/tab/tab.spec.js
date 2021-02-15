@@ -89,6 +89,14 @@ describe("Tab", () => {
     );
   });
 
+  describe("if `href` prop provided", () => {
+    it("should not render the content", () => {
+      wrapper = render({ href: "#" });
+
+      expect(wrapper.find("p").exists()).toBe(false);
+    });
+  });
+
   describe("when a tab is selected", () => {
     it("applies display block property", () => {
       wrapper = renderStyles({

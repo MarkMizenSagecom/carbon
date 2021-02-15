@@ -16,12 +16,28 @@ const StyledTitleContent = styled.div`
     noRightBorder,
     isTabSelected,
     hasSiblings,
+    href,
     error,
     warning,
     info,
   }) => css`
     line-height: 20px;
     margin: 0;
+
+    ${href &&
+    css`
+      color: ${theme.text.color};
+      display: block;
+      text-decoration: none;
+
+      [type="link"] {
+        width: 16px;
+        margin-left: 8px;
+        height: 16px;
+        color: inherit;
+      }
+    `}
+
     ${borders &&
     css`
       border-top: 1px solid ${theme.tab.background};
