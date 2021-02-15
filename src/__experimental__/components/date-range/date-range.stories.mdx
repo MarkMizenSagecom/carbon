@@ -142,6 +142,27 @@ For more information check our [Validations](?path=/docs/documentation-validatio
   </Story>
 </Preview>
 
+## Input props
+
+You can pass props like `allowEmptyValue` and `value` to start and end `DateInput` using `startDateProps` and `endDateProps`.
+
+See [here](http://localhost:9001/?path=/docs/experimental-date-input--default-story#dateinput) for list of available props.
+
+<Preview>
+  <Story name="input props">
+    <DateRange
+      startDateProps={{
+        allowEmptyValue: true,
+        value: "",
+      }}
+      endDateProps={{
+        allowEmptyValue: true,
+        value: "",
+      }}
+    />
+  </Story>
+</Preview>
+
 ## Props:
 
 <Props of={DateRange} />
